@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, FlatList, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
-import RecordType from '../propTypes/RecordType'
 
+import RecordType from '../propTypes/RecordType'
 import Record, { styles as RecordStyles } from './Record'
 
 const numOfColumns = 2
