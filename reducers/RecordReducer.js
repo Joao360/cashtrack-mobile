@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 
-const INITIAL_STATE = {
+import { ADD_RECORD, EDIT_RECORD, DEL_RECORD } from '../actions/recordActions'
+
+const initialState = {
   records: [
     {
       id: 1,
@@ -20,13 +22,18 @@ const INITIAL_STATE = {
   ]
 }
 
-const records = (state = INITIAL_STATE, action) => {
+const records = (state = initialState.records, action) => {
   switch (action.type) {
+    case ADD_RECORD:
+      return [
+        ...state,
+        action.record
+      ]
+    case DEL_RECORD:
+      return state.filter(({ id }) => id !== action.id)
     default:
       return state
   }
 }
 
-export default combineReducers({
-  records
-})
+export default combineReducers({ records })

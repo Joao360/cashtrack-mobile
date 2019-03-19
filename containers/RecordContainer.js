@@ -2,10 +2,8 @@ import { connect } from 'react-redux'
 
 import RecordList from '../components/RecordList'
 
-const mapStateToProps = state => {
-  const { records: { records } } = state
-
-  return { records }
-}
+const mapStateToProps = state => ({
+  records: state.records
+})
 
 export default connect(mapStateToProps)(RecordList)
