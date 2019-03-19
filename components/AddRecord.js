@@ -1,10 +1,10 @@
 import React from 'react'
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native'
 
 const AddRecordButton = ({ onPress }) => (
-  <View>
-    <TouchableOpacity style={styles.floatingButton} onPress={onPress}>
-      <Text>Yo Press Me!</Text>
+  <View style={styles.floatingButton}>
+    <TouchableOpacity onPress={onPress}>
+      <Image style={styles.image} source={require('../static/images/add.png')} />
     </TouchableOpacity>
   </View>
 
@@ -13,7 +13,12 @@ const AddRecordButton = ({ onPress }) => (
 const styles = StyleSheet.create({
   floatingButton: {
     position: 'absolute',
-    bottom: 15
+    bottom: 15,
+    right: 15
+  },
+  image: {
+    width: 40,
+    height: 40
   }
 })
 

@@ -7,6 +7,11 @@ const records = (state = [], action) => {
         ...state,
         action.record
       ]
+    case EDIT_RECORD:
+      return state.map((record) => {
+        if (record.id === action.record.id) return action.record
+        return record
+      })
     case DEL_RECORD:
       return state.filter(({ id }) => id !== action.id)
     default:
