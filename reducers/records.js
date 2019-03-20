@@ -8,10 +8,10 @@ const records = (state = [], action) => {
         action.record
       ]
     case EDIT_RECORD:
-      return state.map((record) => {
-        if (record.id === action.record.id) return action.record
-        return record
-      })
+      return state.map((record) => (record.id === action.record.id
+        ? action.record
+        : record
+      ))
     case DEL_RECORD:
       return state.filter(({ id }) => id !== action.id)
     default:

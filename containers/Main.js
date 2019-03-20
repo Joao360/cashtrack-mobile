@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -6,12 +6,22 @@ import RecordList from '../components/RecordList'
 import AddRecord from '../components/AddRecord'
 import { addRecord } from '../actions/recordActions'
 
-const Main = ({ records, addRecord }) => (
-  <View style={styles.container}>
-    <RecordList records={records} />
-    <AddRecord onPress={addRecord} />
-  </View>
-)
+class Main extends Component {
+  static navigationOptions = {
+    title: 'Cashtrack',
+  }
+
+  render() {
+    const { navigation, records, addRecord } = this.props
+
+    return (
+      <View style={styles.container}>
+        <RecordList records={records} onRecordPress={(record) => navigation.navigate('RecordDetails', { record })} />
+        <AddRecord onPress={addRecord} />
+      </View>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -28,7 +38,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  addRecord () {
+  addRecord() {
     dispatch(addRecord({ id: 9, ammount: 1, recordType: 'Income' }))
   }
 })

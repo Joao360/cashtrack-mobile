@@ -1,25 +1,33 @@
 import React from 'react'
-import { View, FlatList, StyleSheet } from 'react-native'
+import { View, FlatList, StyleSheet, TouchableHighlight } from 'react-native'
 import PropTypes from 'prop-types'
 
 import RecordType from '../propTypes/RecordType'
-import Record, { styles as RecordStyles } from './Record'
+import Record from './Record'
 
 const numOfColumns = 2
 
-const RecordList = ({ records }) => (
-  <FlatList
-    style={{
-      flex: 1,
-      height: '100%',
-      width: '100%'
-    }}
-    data={formatData(records, numOfColumns)}
-    renderItem={renderItem}
-    numColumns={numOfColumns}
-    keyExtractor={(item) => item.id}
-  />
-)
+const RecordList = ({ records, onRecordPress }) => {
+  const renderItem = ({ item }) => (
+    item.invisible
+      ? <View style={styles.item} />
+      : (
+        <TouchableHighlight style={styles.item} onPress={() => onRecordPress(item)}>
+          <Record record={item} />
+        </TouchableHighlight>
+      )
+  )
+
+  return (
+    <FlatList
+      style={styles.list}
+      data={formatData(records, numOfColumns)}
+      renderItem={renderItem}
+      numColumns={numOfColumns}
+      keyExtractor={(item) => item.id}
+    />
+  )
+}
 
 const formatData = (data, numOfColumns) => {
   const newData = [...data]
@@ -34,12 +42,6 @@ const formatData = (data, numOfColumns) => {
   return newData
 }
 
-const renderItem = ({ item }) => {
-  if (item.invisible) {
-    return <View style={[RecordStyles.card, styles.hidden]} />
-  } else return <Record record={item} />
-}
-
 RecordList.propTypes = {
   records: PropTypes.arrayOf(
     PropTypes.shape(RecordType)
@@ -50,6 +52,14 @@ const styles = StyleSheet.create({
   hidden: {
     backgroundColor: 'transparent',
     elevation: 0
+  },
+  item: {
+    flex: 1
+  },
+  list: {
+    flex: 1,
+    height: '100%',
+    width: '100%'
   }
 })
 
