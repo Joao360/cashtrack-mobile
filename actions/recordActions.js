@@ -6,6 +6,10 @@ export const addRecord = record => (
   { type: ADD_RECORD, record }
 )
 
+export const editRecord = record => (
+  { type: EDIT_RECORD, record }
+)
+
 export const deleteRecord = id => (
   { type: DEL_RECORD, id }
 )
