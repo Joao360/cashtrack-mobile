@@ -16,7 +16,7 @@ class Main extends Component {
 
     return (
       <View style={styles.container}>
-        <RecordList records={records} onRecordPress={(record) => navigation.navigate('RecordDetails', { record })} />
+        <RecordList records={records} onRecordPress={(record) => navigation.navigate('RecordEdition', { record })} />
         <AddRecord onPress={addRecord} />
       </View>
     )
