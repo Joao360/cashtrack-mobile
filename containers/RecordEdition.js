@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, TextInput, Button, StyleSheet, Picker, Text, ScrollView } from 'react-native'
+import { ButtonGroup } from 'react-native-elements'
 import { connect } from 'react-redux'
 
 import { editRecord } from '../actions/recordActions'
@@ -11,6 +12,8 @@ const defaultRecord = {
   ammount: 0
 }
 
+const types = ['Expense', 'Income']
+
 class RecordEdition extends Component {
   static navigationOptions = {
     title: 'Record\'s details'
@@ -21,6 +24,12 @@ class RecordEdition extends Component {
 
     const { navigation } = this.props
     this.state = navigation.getParam('record', defaultRecord)
+
+    this.onIndexChanged = this.onIndexChanged.bind(this)
+  }
+
+  onIndexChanged(index) {
+    this.setState({ recordType: index === 0 ? 'Expense' : 'Income' })
   }
 
   render() {
@@ -28,22 +37,19 @@ class RecordEdition extends Component {
     const { editRecord, navigation, balance } = this.props
     const originalRecord = navigation.getParam('record', originalRecord)
 
-    const onIndexChanged = index => {
-      this.setState({ recordType: index === 0 ? 'Expense' : 'Income' })
-    }
-
     return (
       <View style={styles.container}>
-        <View style={{ margin: 15, flexDirection: 'row', justifyContent: 'center' }}>
-          <View style={{flex: 1}}>
-            <Button title='Expense' />
-          </View>
-          <View style={{flex: 1}}>
-            <Button title='Income' />
-          </View>
-        </View>
+        <ButtonGroup
+          onPress={this.onIndexChanged}
+          selectedIndex={recordType === 'Expense' ? 0 : 1}
+          buttons={types}
+        />
 
-        <Text style={styles.label}>Ammount</Text>
+        {recordType === 'Expense' 
+          ? <RecordExpenseInput balance={balance} ammount={ammount} />
+          : <RecordIncomeInput balance={balance} ammount={ammount} />}
+
+        <Text style={styles.label}>Category</Text>
         <TextInput
           style={styles.input}
           keyboardType='numeric'
