@@ -5,12 +5,12 @@ import PropTypes from 'prop-types'
 import RecordType from '../propTypes/RecordType'
 
 const Record = ({ record: { recordType, ammount } }) => (
-  <View style={styles.card} >
-    <Text>{ammount}</Text>
+  <View style={[styles.card, recordType === 'Expense' ? styles.expense : styles.income]} >
+    <Text style={styles.text}>{ammount}</Text>
   </View>
 )
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   card: {
     shadowColor: '#000000',
     shadowOffset: {
@@ -19,13 +19,21 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0.3,
     shadowRadius: 3,
-    backgroundColor: '#ffffff',
     padding: 20,
     margin: 10,
     borderRadius: 3,
     elevation: 3,
     flex: 1,
     alignItems: 'center'
+  },
+  income: {
+    backgroundColor: 'green'
+  },
+  expense: {
+    backgroundColor: 'red'
+  },
+  text: {
+    color: 'white'
   }
 })
 
