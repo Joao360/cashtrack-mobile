@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TextInput, Button, StyleSheet, Picker, Text, ScrollView } from 'react-native'
+import { View, TextInput, Button, StyleSheet, Text } from 'react-native'
 import { ButtonGroup } from 'react-native-elements'
 import { connect } from 'react-redux'
 
