@@ -1,11 +1,14 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation'
-import Main from './containers/Main'
-import RecordEdition from './containers/RecordEdition'
+
+import Main from './app/containers/Main'
+import RecordEdition from './app/containers/RecordEdition'
+import CreateRecord from './app/containers/CreateRecord'
 
 const RootStack = createStackNavigator(
   {
     Main,
-    RecordEdition
+    RecordEdition,
+    CreateRecord
   },
   { 
     initialRouteName: 'Main',

@@ -1,6 +1,6 @@
 import { createStore } from 'redux'
 
-import reducers from './reducers/index'
+import reducers from './app/reducers/index'
 
 const initialState = {
   balance: 185,

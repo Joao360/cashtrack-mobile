@@ -2,7 +2,7 @@ import React from 'react'
 import { FlatList, StyleSheet, TouchableHighlight } from 'react-native'
 import PropTypes from 'prop-types'
 
-import RecordType from '../propTypes/RecordType'
+import RecordType from '../modules/propTypes/RecordType'
 import Record from './Record'
 
 const RecordList = ({ records, onRecordPress }) => {

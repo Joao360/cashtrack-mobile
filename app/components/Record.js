@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
 import PropTypes from 'prop-types'
 
-import RecordType from '../propTypes/RecordType'
+import RecordType from '../modules/propTypes/RecordType'
 
 const Record = ({ record: { recordType, ammount } }) => (
   <View style={[styles.card, recordType === 'Expense' ? styles.expense : styles.income]} >

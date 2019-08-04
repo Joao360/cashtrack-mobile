@@ -5,14 +5,13 @@ import { connect } from 'react-redux'
 
 import { editRecord } from '../actions/recordActions'
 import { RecordExpenseInput, RecordIncomeInput } from '../components/RecordEditionInputs'
+import { recordTypes, income, expense } from '../modules/constants'
 
 const defaultRecord = {
   id: -1,
-  recordType: 'Expense',
+  recordType: expense,
   ammount: 0
 }
-
-const types = ['Expense', 'Income']
 
 class RecordEdition extends Component {
   static navigationOptions = {
@@ -29,7 +28,7 @@ class RecordEdition extends Component {
   }
 
   onIndexChanged(index) {
-    this.setState({ recordType: index === 0 ? 'Expense' : 'Income' })
+    this.setState({ recordType: index === 0 ? expense : income })
   }
 
   render() {
@@ -41,11 +40,11 @@ class RecordEdition extends Component {
       <View style={styles.container}>
         <ButtonGroup
           onPress={this.onIndexChanged}
-          selectedIndex={recordType === 'Expense' ? 0 : 1}
-          buttons={types}
+          selectedIndex={recordType === expense ? 0 : 1}
+          buttons={recordTypes}
         />
 
-        {recordType === 'Expense' 
+        {recordType === expense 
           ? <RecordExpenseInput balance={balance} ammount={ammount} />
           : <RecordIncomeInput balance={balance} ammount={ammount} />}
 

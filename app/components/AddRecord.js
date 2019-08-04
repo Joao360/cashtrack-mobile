@@ -4,7 +4,7 @@ import { StyleSheet, View, Image, TouchableOpacity } from 'react-native'
 const AddRecordButton = ({ onPress }) => (
   <View style={styles.floatingButton}>
     <TouchableOpacity onPress={onPress}>
-      <Image style={styles.image} source={require('../static/images/add.png')} />
+      <Image style={styles.image} source={require('../assets/images/add.png')} />
     </TouchableOpacity>
   </View>
 

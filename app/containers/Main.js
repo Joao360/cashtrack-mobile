@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import RecordList from '../components/RecordList'
 import AddRecord from '../components/AddRecord'
@@ -12,12 +13,12 @@ class Main extends Component {
   }
 
   render() {
-    const { navigation, records, addRecord } = this.props
+    const { navigation, records } = this.props
 
     return (
       <View style={styles.container}>
         <RecordList records={records} onRecordPress={(record) => navigation.navigate('RecordEdition', { record })} />
-        <AddRecord onPress={addRecord} />
+        <AddRecord onPress={() => navigation.navigate('CreateRecord')} />
       </View>
     )
   }
@@ -37,10 +38,13 @@ const mapStateToProps = state => ({
   records: state.records
 })
 
-const mapDispatchToProps = dispatch => ({
-  addRecord() {
-    dispatch(addRecord({ id: 9, ammount: 1, recordType: 'Income' }))
-  }
-})
+const mapDispatchToProps = dispatch => (
+  bindActionCreators(
+    {
+      addRecord
+    },
+    dispatch
+  )
+)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)
