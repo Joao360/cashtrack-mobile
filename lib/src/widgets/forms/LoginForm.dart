@@ -1,8 +1,13 @@
+import 'package:cashtrack/src/widgets/FormText.dart';
 import 'package:flutter/material.dart';
-
-final emailValidationRegExp = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+import 'package:cashtrack/src/widgets/RoundedEdgesContainer.dart';
+import 'package:cashtrack/src/utils/formValidators.dart';
 
 class LoginForm extends StatefulWidget {
+
+  LoginForm({@required this.onRegister});
+  final Function onRegister;
+
   @override
   _LoginFormState createState() => _LoginFormState();
 }
@@ -15,23 +20,6 @@ class _LoginFormState extends State<LoginForm> {
   // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
 
-  String _emailValidator(value) {
-    if (value.isEmpty) {
-      return 'Please enter your email';
-    }
-    if (!RegExp(emailValidationRegExp).hasMatch(value)) {
-      return 'Email is invalid';
-    }
-    return null;
-  }
-
-  String _passwordValidator(value) {
-    if (value.isEmpty) {
-      return 'Password cannot be empty';
-    }
-    return null;
-  }
-
   void _onSubmit() {
     if (_formKey.currentState.validate()) {
       Scaffold
@@ -42,47 +30,35 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: BoxConstraints(maxWidth: 500),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(20))
-      ),
-      margin: const EdgeInsets.symmetric(horizontal: 32),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                  ),
-                  validator: _emailValidator,
-                ),
+    return RoundedEdgesContainer(
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: <Widget>[
+            FormText(
+              labelText: 'Email',
+              validator: emailValidator,
+            ),
+            FormText(
+              obscureText: true,
+              labelText: 'Password',
+              validator: passwordValidator,
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 8),
+              child: ElevatedButton(
+                onPressed: _onSubmit,
+                child: Text('Login'),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
-                child: TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Password',
-                  ),
-                  validator: _passwordValidator,
-                ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 8),
+              child: ElevatedButton(
+                onPressed: widget.onRegister,
+                child: Text('Register'),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 8),
-                child: ElevatedButton(
-                  onPressed: _onSubmit,
-                  child: Text('Login'),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       )
     );
