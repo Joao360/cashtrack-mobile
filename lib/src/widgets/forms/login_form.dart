@@ -1,7 +1,7 @@
-import 'package:cashtrack/src/widgets/FormText.dart';
+import 'package:cashtrack/src/widgets/form_text.dart';
 import 'package:flutter/material.dart';
-import 'package:cashtrack/src/widgets/RoundedEdgesContainer.dart';
-import 'package:cashtrack/src/utils/formValidators.dart';
+import 'package:cashtrack/src/widgets/rounded_edges_container.dart';
+import 'package:cashtrack/src/utils/form_validators.dart';
 
 class LoginForm extends StatefulWidget {
 

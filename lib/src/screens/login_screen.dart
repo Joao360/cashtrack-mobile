@@ -1,5 +1,5 @@
-import 'package:cashtrack/src/widgets/forms/LoginForm.dart';
-import 'package:cashtrack/src/widgets/forms/RegisterForm.dart';
+import 'package:cashtrack/src/widgets/forms/login_form.dart';
+import 'package:cashtrack/src/widgets/forms/register_form.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {

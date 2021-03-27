@@ -1,13 +1,13 @@
-class RootDTO {
+class Root {
   final String register;
   final String signIn;
   final String records;
   final String categories;
 
-  RootDTO({this.register, this.signIn, this.records, this.categories});
+  Root({this.register, this.signIn, this.records, this.categories});
 
-  factory RootDTO.fromJson(Map<String, dynamic> json) {
-    return RootDTO(
+  factory Root.fromJson(Map<String, dynamic> json) {
+    return Root(
       register: json['userId'],
       signIn: json['id'],
       records: json['title'],
