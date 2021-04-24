@@ -8,9 +8,9 @@ class Root {
 
   factory Root.fromJson(Map<String, dynamic> json) {
     return Root(
-      register: json['userId'],
-      signIn: json['id'],
-      records: json['title'],
+      register: json['register'],
+      signIn: json['signin'],
+      records: json['records'],
       categories: json['categories'],
     );
   }
