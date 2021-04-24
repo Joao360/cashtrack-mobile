@@ -1,5 +1,8 @@
-import 'package:cashtrack/res/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:cashtrack/config/theme.dart';
+import 'package:cashtrack/state/app_state.dart';
 import 'package:cashtrack/config/routes.dart';
 
 void main() {
@@ -9,15 +12,14 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Cashtrack',
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        primarySwatch: AppColors.secondaryColor,
-        scaffoldBackgroundColor: AppColors.primaryColor,
+    return ChangeNotifierProvider(
+      create: (context) => AppState(),
+      child: MaterialApp(
+        title: 'Cashtrack',
+        theme: appTheme,
+        routes: routes,
+        initialRoute: "/",
       ),
-      routes: routes,
-      initialRoute: "/",
     );
   }
 }
