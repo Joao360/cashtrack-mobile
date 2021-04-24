@@ -1,6 +1,6 @@
+import 'package:cashtrack/res/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:cashtrack/config/routes.dart';
-import 'package:cashtrack/screens/login/login_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,12 +12,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Cashtrack',
       theme: ThemeData(
-        primarySwatch: Colors.grey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        scaffoldBackgroundColor: Colors.teal,
+        primarySwatch: AppColors.secondaryColor,
+        scaffoldBackgroundColor: AppColors.primaryColor,
       ),
       routes: routes,
-      initialRoute: "/login",
+      initialRoute: "/",
     );
   }
 }
