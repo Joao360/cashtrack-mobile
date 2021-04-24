@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:cashtrack/src/domain/model/user.dart';
+import 'package:cashtrack/domain/model/user.dart';
 import 'package:http/http.dart' as http;
 
 Future<User> login(username, password) async {

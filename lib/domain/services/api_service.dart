@@ -1,4 +1,4 @@
-import 'package:cashtrack/src/domain/model/root.dart';
+import 'package:cashtrack/domain/model/root.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
