@@ -5,16 +5,16 @@ import 'package:http/http.dart' as http;
 import 'package:cashtrack/domain/model/user.dart';
 import 'package:cashtrack/domain/model/root.dart';
 
-const String API_ROOT = 'http://localhost:8000/';
+const String API_ROOT = 'http://192.168.1.73:8000/';
 
 class CashtrackAPI {
   static Future<Root> fetchRoot() async {
     final response = await http.get(API_ROOT);
 
-    if (response.statusCode == 200) {
+    if (response.statusCode < 300) {
       return Root.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception('Failed to load api root');
+      throw Exception('Failed to load api root: ' + response.reasonPhrase);
     }
   }
 
