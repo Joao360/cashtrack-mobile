@@ -1,6 +1,6 @@
-import 'package:cashtrack/utils/form_validators.dart';
-import 'package:cashtrack/widgets/form_text.dart';
-import 'package:cashtrack/widgets/rounded_edges_container.dart';
+import 'package:cashtrack/common/utils/form_validators.dart';
+import 'package:cashtrack/common/widgets/form_text.dart';
+import 'package:cashtrack/common/widgets/rounded_edges_container.dart';
 import 'package:flutter/material.dart';
 
 class RegisterForm extends StatefulWidget {

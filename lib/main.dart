@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cashtrack/routes.dart';
-import 'package:cashtrack/screens/login_screen.dart';
+import 'package:cashtrack/config/routes.dart';
+import 'package:cashtrack/screens/login/login_screen.dart';
 
 void main() {
   runApp(MyApp());
