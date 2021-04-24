@@ -1,12 +1,14 @@
-import 'package:cashtrack/common/widgets/form_text.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cashtrack/common/widgets/form_text.dart';
 import 'package:cashtrack/common/widgets/rounded_edges_container.dart';
 import 'package:cashtrack/common/utils/form_validators.dart';
 
 class LoginForm extends StatefulWidget {
-
-  LoginForm({@required this.onRegister});
   final Function onRegister;
+  final Function onLogin;
+
+  LoginForm({@required this.onRegister, @required this.onLogin});
 
   @override
   _LoginFormState createState() => _LoginFormState();
@@ -20,47 +22,57 @@ class _LoginFormState extends State<LoginForm> {
   // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
 
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   void _onSubmit() {
     if (_formKey.currentState.validate()) {
-      Scaffold
-          .of(context)
-          .showSnackBar(SnackBar(content: Text('Processing Data')));
+      widget.onLogin(emailController.text, passwordController.text);
     }
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return RoundedEdgesContainer(
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget>[
-            FormText(
-              labelText: 'Email',
-              validator: emailValidator,
+        child: Form(
+      key: _formKey,
+      child: Column(
+        children: <Widget>[
+          FormText(
+            controller: emailController,
+            keyboardType: TextInputType.emailAddress,
+            labelText: 'Email',
+            validator: emailValidator,
+          ),
+          FormText(
+            controller: passwordController,
+            obscureText: true,
+            labelText: 'Password',
+            validator: passwordValidator,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 8),
+            child: ElevatedButton(
+              onPressed: _onSubmit,
+              child: Text('Login'),
             ),
-            FormText(
-              obscureText: true,
-              labelText: 'Password',
-              validator: passwordValidator,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 8),
+            child: ElevatedButton(
+              onPressed: widget.onRegister,
+              child: Text('Register'),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 8),
-              child: ElevatedButton(
-                onPressed: _onSubmit,
-                child: Text('Login'),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 8),
-              child: ElevatedButton(
-                onPressed: widget.onRegister,
-                child: Text('Register'),
-              ),
-            ),
-          ],
-        ),
-      )
-    );
+          ),
+        ],
+      ),
+    ));
   }
 }
