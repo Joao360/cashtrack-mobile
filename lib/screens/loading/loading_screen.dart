@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:cashtrack/common/cashtrack_api.dart';
 import 'package:cashtrack/config/routes.dart';
-import 'package:flutter/material.dart';
+import 'package:cashtrack/state/app_state.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -8,13 +11,18 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-
   @override
   void initState() {
     super.initState();
 
     // Fetch api root and check for stored user credentials
-    CashtrackAPI.fetchRoot().whenComplete(() => Navigator.pushNamed(context, Routes.login));
+    CashtrackAPI.fetchRoot()
+        .then((root) {
+          CashtrackAPI.endpoints = root;
+        })
+        .catchError((error) => print(error))
+        .whenComplete(
+            () => Navigator.pushReplacementNamed(context, Routes.login));
 
     // TODO check for stored user credentials
   }
