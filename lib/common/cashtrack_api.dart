@@ -40,6 +40,36 @@ class CashtrackAPI {
     if (response.statusCode < 500) {
       var json = jsonDecode(response.body);
       if (response.statusCode < 300) {
+        return User.fromJson(json['user']);
+      }
+
+      throw Exception(json);
+    } else {
+      throw Exception(response.reasonPhrase);
+    }
+  }
+
+  static Future<User> register(firstName, email, password) async {
+    if (endpoints == null || endpoints.signIn == null) {
+      throw Exception('endpoints was mot initialized');
+    }
+
+    final response = await http.post(
+      endpoints.register,
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode({
+        'first_name': firstName,
+        'email': email,
+        'password': password
+      }),
+    );
+
+
+    if (response.statusCode < 500) {
+      var json = jsonDecode(response.body);
+      if (response.statusCode < 300) {
         return User.fromJson(json);
       }
 

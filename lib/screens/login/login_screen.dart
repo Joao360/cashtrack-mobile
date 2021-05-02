@@ -1,5 +1,7 @@
+import 'dart:collection';
+
 import 'package:cashtrack/common/cashtrack_api.dart';
-import 'package:cashtrack/domain/model/root.dart';
+import 'package:cashtrack/common/widgets/ErrorDialog.dart';
 import 'package:cashtrack/state/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,8 +29,22 @@ class _LoginScreenState extends State<LoginScreen> {
       var user = await CashtrackAPI.login(username, password);
       var state = context.read<AppState>();
       state.setUser(user);
-    } catch(e) {
+      // TODO navigate to home
+    } catch (e) {
       print(e);
+      showErrorDialog(context, e);
+    }
+  }
+
+  void onRegister(String name, String email, String password) async {
+    try {
+      var user = await CashtrackAPI.register(name, email, password);
+      var state = context.read<AppState>();
+      state.setUser(user);
+      // TODO navigate to home
+    } catch (e) {
+      print(e);
+      showErrorDialog(context, e);
     }
   }
 
@@ -49,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               onLogin: onLogin,
                               onRegister: toggleForms,
                             )
-                          : RegisterForm(),
+                          : RegisterForm(onRegister: onRegister),
                     )
                   ]),
               if (!isLoginForm)
