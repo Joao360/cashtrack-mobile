@@ -1,3 +1,4 @@
+import 'package:cashtrack/res/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cashtrack/common/widgets/form_text.dart';
@@ -37,6 +38,7 @@ class _LoginFormState extends State<LoginForm> {
     passwordController.dispose();
     super.dispose();
   }
+  var t = TextButton.styleFrom(primary: Colors.white, backgroundColor: AppColors.primaryColor);
 
   @override
   Widget build(BuildContext context) {
@@ -59,16 +61,40 @@ class _LoginFormState extends State<LoginForm> {
           ),
           Padding(
             padding: EdgeInsets.only(top: 8),
-            child: ElevatedButton(
-              onPressed: _onSubmit,
-              child: Text('Login'),
+            child: ConstrainedBox(
+              constraints: BoxConstraints.tightFor(width: 250, height: 40),
+              child: TextButton(
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    )
+                  ),
+                  backgroundColor: MaterialStateProperty.all(AppColors.primaryColor),
+                  foregroundColor: MaterialStateProperty.all(Colors.white)
+                ),
+                onPressed: _onSubmit,
+                child: Text('Login'),
+              ),
             ),
           ),
           Padding(
             padding: EdgeInsets.only(top: 8),
-            child: ElevatedButton(
-              onPressed: widget.onRegister,
-              child: Text('Register'),
+            child: ConstrainedBox(
+              constraints: BoxConstraints.tightFor(width: 250, height: 40),
+              child: OutlinedButton(
+                style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(color: Colors.black, style: BorderStyle.solid, width: 1)
+                        )
+                    ),
+                    foregroundColor: MaterialStateProperty.all(Colors.black)
+                ),
+                onPressed: widget.onRegister,
+                child: Text('Register'),
+              ),
             ),
           ),
         ],

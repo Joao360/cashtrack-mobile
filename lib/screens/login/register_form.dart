@@ -1,6 +1,7 @@
 import 'package:cashtrack/common/utils/form_validators.dart';
 import 'package:cashtrack/common/widgets/form_text.dart';
 import 'package:cashtrack/common/widgets/rounded_edges_container.dart';
+import 'package:cashtrack/res/colors.dart';
 import 'package:flutter/material.dart';
 
 class RegisterForm extends StatefulWidget {
@@ -57,9 +58,21 @@ class _RegisterFormState extends State<RegisterForm> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: 8),
-                child: ElevatedButton(
-                  child: Text('Sign up'),
-                  onPressed: _onRegister,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints.tightFor(width: 250, height: 40),
+                  child: TextButton(
+                    style: ButtonStyle(
+                        shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            )
+                        ),
+                        backgroundColor: MaterialStateProperty.all(AppColors.primaryColor),
+                        foregroundColor: MaterialStateProperty.all(Colors.white)
+                    ),
+                    onPressed: _onRegister,
+                    child: Text('Sign up'),
+                  ),
                 ),
               ),
             ],
