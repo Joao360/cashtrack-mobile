@@ -27,6 +27,17 @@ class _RegisterFormState extends State<RegisterForm> {
     }
   }
 
+  String repeatPasswordValidator(String value) {
+    if (value.isEmpty) {
+      return 'Password cannot be empty';
+    }
+    if (value != passwordController.text) {
+      return 'Passwords do not match';
+    }
+
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return RoundedEdgesContainer(
@@ -53,8 +64,8 @@ class _RegisterFormState extends State<RegisterForm> {
               FormText(
                 controller: repeatPwdController,
                 obscureText: true,
-                labelText: 'Repeat Password',
-                validator: passwordValidator,
+                labelText: 'Confirm Password',
+                validator: repeatPasswordValidator,
               ),
               Padding(
                 padding: EdgeInsets.only(top: 8),
