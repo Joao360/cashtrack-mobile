@@ -6,20 +6,21 @@ class User {
   final String lastName;
   final moneyDeposits;
   final String token;
-  final int tokenExpiresIn;
+  final String tokenExpiresIn;
 
   User({this.firstName, this.lastName, this.moneyDeposits, this.token, this.tokenExpiresIn, this.url, this.id, this.email});
 
   factory User.fromJson(Map<String, dynamic> json) {
+    var user = json['user'];
     return User(
-      url: json['url'],
-      id: json['id'],
-      email: json['email'],
-      firstName: json['first_name'],
-      lastName: json['last_name'],
-      moneyDeposits: json['moneyDeposits'],
-      token: json['token'],
-      tokenExpiresIn: json['token_expires_in'],
+      url: user['url'],
+      id: user['id'],
+      email: user['email'],
+      firstName: user['first_name'],
+      lastName: user['last_name'],
+      moneyDeposits: user['moneyDeposits'],
+      token: user['token'],
+      tokenExpiresIn: user['token_expires_in'],
     );
   }
 }
