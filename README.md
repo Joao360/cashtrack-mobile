@@ -2,7 +2,9 @@
 
 A new Flutter project.
 
-Flutter version: 2.0.6
+### Versions
+Flutter: 3.0.1
+Dart: 2.17.1
 
 ## Getting Started
 

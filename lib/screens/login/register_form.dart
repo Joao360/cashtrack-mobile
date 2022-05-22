@@ -1,7 +1,7 @@
-import 'package:cashtrack/common/utils/form_validators.dart';
-import 'package:cashtrack/common/widgets/form_text.dart';
-import 'package:cashtrack/common/widgets/rounded_edges_container.dart';
-import 'package:cashtrack/res/colors.dart';
+import 'package:cashtrack_mobile/common/utils/form_validators.dart';
+import 'package:cashtrack_mobile/common/widgets/form_text.dart';
+import 'package:cashtrack_mobile/common/widgets/rounded_edges_container.dart';
+import 'package:cashtrack_mobile/res/colors.dart';
 import 'package:flutter/material.dart';
 
 class RegisterForm extends StatefulWidget {
@@ -27,7 +27,7 @@ class _RegisterFormState extends State<RegisterForm> {
     }
   }
 
-  String repeatPasswordValidator(String value) {
+  String? repeatPasswordValidator(String value) {
     if (value.isEmpty) {
       return 'Password cannot be empty';
     }

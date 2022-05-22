@@ -8,7 +8,7 @@ class User {
   final String token;
   final String tokenExpiresIn;
 
-  User({this.firstName, this.lastName, this.moneyDeposits, this.token, this.tokenExpiresIn, this.url, this.id, this.email});
+  User({required this.firstName, required this.lastName, this.moneyDeposits, required this.token, required this.tokenExpiresIn, required this.url, required this.id, required this.email});
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(

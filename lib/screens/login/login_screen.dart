@@ -1,13 +1,13 @@
 import 'dart:collection';
 
-import 'package:cashtrack/common/cashtrack_api.dart';
-import 'package:cashtrack/common/widgets/ErrorDialog.dart';
-import 'package:cashtrack/state/app_state.dart';
+import 'package:cashtrack_mobile/common/cashtrack_api.dart';
+import 'package:cashtrack_mobile/common/widgets/ErrorDialog.dart';
+import 'package:cashtrack_mobile/state/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:cashtrack/screens/login/login_form.dart';
-import 'package:cashtrack/screens/login/register_form.dart';
+import 'package:cashtrack_mobile/screens/login/login_form.dart';
+import 'package:cashtrack_mobile/screens/login/register_form.dart';
 
 class LoginScreen extends StatefulWidget {
   @override

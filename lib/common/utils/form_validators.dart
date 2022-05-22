@@ -1,6 +1,6 @@
 final emailValidationRegExp = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
 
-String nameValidator(value) {
+String? nameValidator(value) {
   if (value.isEmpty) {
     return 'Please enter your name';
   }
@@ -8,7 +8,7 @@ String nameValidator(value) {
   return null;
 }
 
-String emailValidator(value) {
+String? emailValidator(value) {
   if (value.isEmpty) {
     return 'Please enter your email';
   }
@@ -18,7 +18,7 @@ String emailValidator(value) {
   return null;
 }
 
-String passwordValidator(value) {
+String? passwordValidator(value) {
   if (value.isEmpty) {
     return 'Password cannot be empty';
   }

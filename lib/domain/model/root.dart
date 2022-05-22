@@ -4,7 +4,7 @@ class Root {
   final String records;
   final String categories;
 
-  Root({this.register, this.signIn, this.records, this.categories});
+  Root({required this.register, required this.signIn, required this.records, required this.categories});
 
   factory Root.fromJson(Map<String, dynamic> json) {
     return Root(

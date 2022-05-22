@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:cashtrack/common/cashtrack_api.dart';
-import 'package:cashtrack/config/routes.dart';
+import 'package:cashtrack_mobile/common/cashtrack_api.dart';
+import 'package:cashtrack_mobile/config/routes.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override

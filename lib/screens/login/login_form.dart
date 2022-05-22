@@ -1,15 +1,15 @@
-import 'package:cashtrack/res/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:cashtrack_mobile/res/colors.dart';
 
-import 'package:cashtrack/common/widgets/form_text.dart';
-import 'package:cashtrack/common/widgets/rounded_edges_container.dart';
-import 'package:cashtrack/common/utils/form_validators.dart';
+import 'package:cashtrack_mobile/common/widgets/form_text.dart';
+import 'package:cashtrack_mobile/common/widgets/rounded_edges_container.dart';
+import 'package:cashtrack_mobile/common/utils/form_validators.dart';
 
 class LoginForm extends StatefulWidget {
   final Function onRegister;
   final Function onLogin;
 
-  LoginForm({@required this.onRegister, @required this.onLogin});
+  LoginForm({required this.onRegister, required this.onLogin});
 
   @override
   _LoginFormState createState() => _LoginFormState();

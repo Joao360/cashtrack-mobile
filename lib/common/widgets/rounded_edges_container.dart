@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class RoundedEdgesContainer extends StatelessWidget {
 
-  RoundedEdgesContainer({@required this.child});
+  RoundedEdgesContainer({required this.child});
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        constraints: BoxConstraints(maxWidth: 500),
-        decoration: BoxDecoration(
+        constraints: const BoxConstraints(maxWidth: 500),
+        decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(20))
         ),
