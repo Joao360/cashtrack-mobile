@@ -2,16 +2,16 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 
-import 'package:cashtrack/domain/model/user.dart';
-import 'package:cashtrack/domain/model/root.dart';
+import 'package:cashtrack_mobile/domain/model/user.dart';
+import 'package:cashtrack_mobile/domain/model/root.dart';
 
-const String API_ROOT = 'http://192.168.1.73:8000/';
+const String apiRoot = 'http://192.168.1.73:8000/';
 
 class CashtrackAPI {
-  static Root endpoints;
+  static Root? endpoints;
 
   static Future<Root> fetchRoot() async {
-    final response = await http.get(API_ROOT);
+    final response = await http.get(Uri.parse(apiRoot));
 
     if (response.statusCode < 300) {
       return Root.fromJson(jsonDecode(response.body));
@@ -21,12 +21,13 @@ class CashtrackAPI {
   }
 
   static Future<User> login(username, password) async {
-    if (endpoints == null || endpoints.signIn == null) {
+    var root = endpoints;
+    if (root == null) {
       throw Exception('endpoints was mot initialized');
     }
 
     final response = await http.post(
-      endpoints.signIn,
+      Uri.parse(root.signIn),
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
       },
@@ -50,12 +51,13 @@ class CashtrackAPI {
   }
 
   static Future<User> register(firstName, email, password) async {
-    if (endpoints == null || endpoints.signIn == null) {
+    var localEndpoints = endpoints;
+    if (localEndpoints == null) {
       throw Exception('endpoints was mot initialized');
     }
 
     final response = await http.post(
-      endpoints.register,
+      Uri.parse(localEndpoints.register),
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
       },

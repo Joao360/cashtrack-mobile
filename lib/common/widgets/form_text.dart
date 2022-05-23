@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class FormText extends StatelessWidget {
-  final Function validator;
+  final FormFieldValidator<String> validator;
   final String labelText;
   final bool obscureText;
   final TextEditingController controller;
-  final TextInputType keyboardType;
+  final TextInputType? keyboardType;
 
   FormText({required this.validator,
     required this.labelText,
     required this.controller,
     this.obscureText = false,
-    required this.keyboardType});
+    this.keyboardType});
 
   @override
   Widget build(BuildContext context) {

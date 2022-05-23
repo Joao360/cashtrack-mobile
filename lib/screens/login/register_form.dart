@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 class RegisterForm extends StatefulWidget {
   final onRegister;
 
-  RegisterForm({@required this.onRegister});
+  const RegisterForm({Key? key, required this.onRegister}) : super(key: key);
 
   @override
-  _RegisterFormState createState() => _RegisterFormState();
+  State<RegisterForm> createState() => _RegisterFormState();
 }
 
 class _RegisterFormState extends State<RegisterForm> {
@@ -22,13 +22,13 @@ class _RegisterFormState extends State<RegisterForm> {
   final repeatPwdController = TextEditingController();
 
   void _onRegister() {
-    if (_formKey.currentState.validate()) {
+    if (_formKey.currentState?.validate() == true) {
       widget.onRegister(nameController.text, emailController.text, passwordController.text);
     }
   }
 
-  String? repeatPasswordValidator(String value) {
-    if (value.isEmpty) {
+  String? repeatPasswordValidator(String? value) {
+    if (value == null || value.isEmpty) {
       return 'Password cannot be empty';
     }
     if (value != passwordController.text) {

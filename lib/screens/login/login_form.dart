@@ -6,13 +6,13 @@ import 'package:cashtrack_mobile/common/widgets/rounded_edges_container.dart';
 import 'package:cashtrack_mobile/common/utils/form_validators.dart';
 
 class LoginForm extends StatefulWidget {
-  final Function onRegister;
+  final VoidCallback onRegister;
   final Function onLogin;
 
-  LoginForm({required this.onRegister, required this.onLogin});
+  const LoginForm({Key? key, required this.onRegister, required this.onLogin}) : super(key: key);
 
   @override
-  _LoginFormState createState() => _LoginFormState();
+  State<LoginForm> createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
@@ -27,7 +27,7 @@ class _LoginFormState extends State<LoginForm> {
   final passwordController = TextEditingController();
 
   void _onSubmit() {
-    if (_formKey.currentState.validate()) {
+    if (_formKey.currentState?.validate() == true) {
       widget.onLogin(emailController.text, passwordController.text);
     }
   }
@@ -60,9 +60,9 @@ class _LoginFormState extends State<LoginForm> {
             validator: passwordValidator,
           ),
           Padding(
-            padding: EdgeInsets.only(top: 8),
+            padding: const EdgeInsets.only(top: 8),
             child: ConstrainedBox(
-              constraints: BoxConstraints.tightFor(width: 250, height: 40),
+              constraints: const BoxConstraints.tightFor(width: 250, height: 40),
               child: TextButton(
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all(
@@ -74,26 +74,26 @@ class _LoginFormState extends State<LoginForm> {
                   foregroundColor: MaterialStateProperty.all(Colors.white)
                 ),
                 onPressed: _onSubmit,
-                child: Text('Login'),
+                child: const Text('Login'),
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 8),
+            padding: const EdgeInsets.only(top: 8),
             child: ConstrainedBox(
-              constraints: BoxConstraints.tightFor(width: 250, height: 40),
+              constraints: const BoxConstraints.tightFor(width: 250, height: 40),
               child: OutlinedButton(
                 style: ButtonStyle(
                     shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
-                          side: BorderSide(color: Colors.black, style: BorderStyle.solid, width: 1)
+                          side: const BorderSide(color: Colors.black, style: BorderStyle.solid, width: 1)
                         )
                     ),
                     foregroundColor: MaterialStateProperty.all(Colors.black)
                 ),
                 onPressed: widget.onRegister,
-                child: Text('Register'),
+                child: const Text('Register'),
               ),
             ),
           ),
